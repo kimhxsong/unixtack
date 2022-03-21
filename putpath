@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [[ $# -eq 0 ]];
+then
+	echo "putpath: Too few arguments."
+	exit 1
+fi
+
+if [[ $# -gt 1 ]];
+then
+	echo "putpath: Too many arguments."
+	exit 1
+fi
+
+if [[ ! -d $1 ]];
+then
+	echo putpath: \'$1\' is not a directory.
+	exit 1
+fi
+
+echo PATH=\""$1:$PATH"\" 1>&2 >> ~/.bashrc
