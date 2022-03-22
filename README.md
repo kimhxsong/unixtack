@@ -1,11 +1,25 @@
-# Scoolipt
-My own shell scripts
+# Unixtack
+Stack of things related to unix systems
 
 ## List of the shell scripts
+These scripts consist of commands introduced in the [UNIXTOOLS.md](./UNIXTOOLS.md)
+
+### Mar 22, 2022
+#### New
+o2(open2):
+- you don't need '-a' anymore using 'open' command.
+
+#### Updated
+chlg:
+- Name changed on March 22
 
 ### Mar 21, 2022
-- checklogin
-- putpath
+#### New
+~~checklogin~~ chlg:
+- Check the shell profile that exists.
+
+putpath:
+- put your program path easily. Example. `$> putpath $PWD`
 
 ## Reference
 - [Terminal User Guide](https://support.apple.com/guide/terminal/welcome/mac)
