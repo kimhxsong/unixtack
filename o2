@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# o2(open2) is the wrapper script for open.
+# You can run the program without the -a option.
+
+if ! open "$@" >/dev/null 2>&1 ; then
+  if ! open -a "$@" >/dev/null 2>&1 ; then
+    if [ $# -gt 1 ] ; then
+      echo "open2: More than one program not supported" >&2
+      exit 1
+    else
+      case $(echo $1 | tr '[:upper:]' '[:lower]') in
+      activ*|cpu  ) app="Activity Monitor"            ;;
+      blth        ) app="Bluetooth"                   ;;
+      info*       ) app="System Information"          ;;
+      prefs       ) app="System Preferences"          ;;
+      toggl*      ) app="Toggl Track"                 ;;
+      ddsk        ) app="DaisyDisk"                   ;;
+      code        ) app="Visual Studio Code"          ;;
+      cnr         ) app="Google Chrome Canary"        ;;
+      obsi*       ) app="Obsidian"                    ;;
+      gf3         ) app="GIF Brewery 3"               ;;
+      bld         ) app="Blender"                     ;;
+      lline       ) app="Lifeline"                    ;;
+      *           ) echo "open: Don't know what to do with '$1'" >&2
+        exit 1
+      esac
+      echo "You asked for '$1' but I think you mean $app." >&2
+      open -a "$app"
+    fi
+  fi
+fi
+exit 0
