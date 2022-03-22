@@ -1,21 +1,27 @@
 #!/bin/bash
 
-if [[ $# -eq 0 ]];
-then
-	echo "putpath: Too few arguments."
-	exit 1
+if [[ $# -ne 1 ]] ; then
+  echo "putpath: This program receives only one argument."
+  exit 1
 fi
 
-if [[ $# -gt 1 ]];
-then
-	echo "putpath: Too many arguments."
-	exit 1
+if [[ ! -d $1 ]] ; then
+  echo "putpath: \'$1\' is not a directory."
+  exit 1
 fi
 
-if [[ ! -d $1 ]];
-then
-	echo putpath: \'$1\' is not a directory.
-	exit 1
+echo "If you want to apply to the current shell session, enter the commands below.:"
+if [[ $(echo $SHELL | grep -c zsh) ]] ; then
+  echo OLDPATH=\"$PATH\" >> ~/.zprofile
+  echo PATH=\""$1:$PATH"\" >> ~/.zprofile
+  echo 'source ~/.zprofile'
+elif [[ $(echo $SHELL | grep -c bash) ]] ; then
+  echo OLDPATH=\"$PATH\" >> ~/.profile
+  echo PATH=\""$1:$PATH"\" >> ~/.profile
+  echo 'source ~/.profile'
+else
+  echo "Oops! "${SHELL##*/} is not yet supported.
+  exit 1
 fi
 
-echo PATH=\""$1:$PATH"\" 1>&2 >> ~/.bashrc
+exit 0
