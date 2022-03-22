@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# BASH FILES
+PROFILE_PATH=(
+  "/etc/profile"
+  "$HOME/.bash_profile"
+  "$HOME/.bash_login"
+  "$HOME/.profile"
+  "$HOME/.bashrc"
+  "$HOME/.bash_logout"
+  "$HOME/.inputrc"
+)
+
+# ZSH FILES
+if [ $(env | grep 'ZSH' | wc -l) -gt 0 ] ; then 
+  PROFILE_PATH+=(
+    $ZDOTDIR/.zshenv
+    $ZDOTDIR/.zprofile
+    $ZDOTDIR/.zshrc
+    $ZDOTDIR/.zlogin
+    $ZDOTDIR/.zlogout
+    /etc/zshenv
+    /etc/zprofile
+    /etc/zshrc
+    /etc/zlogin
+    /etc/zlogout 
+  )
+fi
+
+echo "Login scripts:"
+
+INDEX=0
+for PROFILE in ${PROFILE_PATH[@]};
+do
+  if [[ -e $PROFILE ]];
+  then
+    echo "[$INDEX] $PROFILE";
+    INDEX=$(expr $INDEX + 1)
+  fi
+done
