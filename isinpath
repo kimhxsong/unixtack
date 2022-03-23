@@ -1,0 +1,56 @@
+#!/bin/bash
+#
+# Copyright 2022 Hyeonsong Kim
+#
+
+declare -r TRUE=0
+declare -r FALSE=1
+
+function is_in_path() {
+  local  _cmd=$1
+  local  _path=$2
+  local  oldIFS=$IFS
+  IFS=":"
+
+  for dir in $_path
+  do
+    # echo $dir/$_cmd
+    if [ -x $dir/$_cmd ] ; then
+      IFS=$oldIFS
+      return $TRUE
+    fi
+  done
+
+  IFS=$oldIFS
+  return $FALSE
+}
+
+function find_cmd() {
+  local  cmd=$1
+
+  if [ "$cmd" != "" ] ; then
+    if [ "${cmd:0:1}" = "/" ] ; then
+      if [ ! -x $cmd ] ; then
+        return 1
+      fi
+    elif ! is_in_path $cmd "$PATH" ; then
+        return 2
+    fi
+  fi
+
+  return 0
+}
+
+if [ $# -ne 1 ] ; then
+  echo "Usage: isinpath <command>" >&2
+  exit 1
+fi
+
+find_cmd "$1"
+case $? in
+  0 ) echo "$1 found in PATH"                       ;;
+  1 ) echo "ERROR: $1 not found or not executable"  ;;
+  2 ) echo "ERROR: $1 not found in PATH"            ;;
+esac
+
+exit 0
