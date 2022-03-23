@@ -36,3 +36,4 @@ putpath:
 - [List of Xcode Command Line Tools](https://mac.install.guide/commandlinetools/8.html)
 - [Utility Syntax Guidelines](https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/basedefs/V1_chap12.html#tag_12_02)
 - [The Mac OS X Command Line:Unix Under the Hood](https://books.google.co.kr/books?id=N--YV7uyDI8C&q=os+x+%22terminal+app%22&pg=PA9&redir_esc=y#v=onepage&q&f=false)
+- [Advanced Bash-Scripting Guide](https://tldp.org/LDP/abs/html/index.html)
