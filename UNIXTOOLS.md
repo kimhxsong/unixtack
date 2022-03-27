@@ -87,6 +87,12 @@
 - [ ] uuencode
 - [ ] uucp
 - [ ] uustat
+- [ ] netstat
+- [ ] ping
+- [ ] dig
+- [ ] traceroute
+- [ ] whois
+- [ ] finger
 
 
 ## Programming
@@ -159,7 +165,7 @@ Source Code Control System
 - [x] head
 - [ ] iconv
 - [ ] join
-- [ ] *less
+- [ ] less
 - [ ] lp
 - [ ] more
 - [ ] nl
@@ -176,16 +182,6 @@ Source Code Control System
 - [x] vi
 - [x] wc
 - [ ] zcat
-
-
-## Externals
-- [ ] jtool2
-- [ ] procexp
-- [ ] supraudit
-- [ ] XpoCe
-- [ ] kdv
-- [ ] jlutil
-
 
 ## Reference
 - https://en.wikipedia.org/wiki/List_of_Unix_commands
